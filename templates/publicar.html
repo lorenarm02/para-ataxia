@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block titulo %}
+  Publicar
+{% endblock %}
+{% block contenido %}
+  <header>
+    <div class="header">
+      <div class="logo">
+        <a href="{{ url_for('principal') }}"><img src="{{ url_for('static', filename='imagenes/logoTFG.png') }}" alt="Logo para-ataxia" class="imglogo" /></a>
+      </div>
+      <div class="sesion">
+          <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='imagenes/todo.png') }}" alt="Ver publicaciones" /></a>
+          <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='imagenes/cerrar-sesion.png') }}" alt="Cerrar sesión" /></a>
+      </div>
+    </div>
+  </header>
+
+  <br /><br /><br /><br /><br /><br />
+  <div class="container">
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Publicación nueva</h1>
+      <form action="{{ url_for('publicar') }}" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="ta" class="form-label">Tipo de Ataxia</label>
+          <select id="ta" name="ta" class="form-select" required>
+            <option value="" disabled selected>Selecciona un tipo</option>
+            {% for ta in tiposAtaxia %}
+              <option value="{{ ta }}">{{ ta }}</option>
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback">Por favor, selecciona un tipo de ataxia.</div>
+        </div>
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea name="descripcion" id="descripcion" class="form-control" rows="4" required></textarea>
+          <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-outline-dark btn-lg">Publicar</button>
+        </div>
+      </form>
+      {% if mensaje %}
+        <div class="alert alert-success mt-3" role="alert">{{ mensaje }}</div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

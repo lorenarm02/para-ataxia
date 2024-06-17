@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block titulo %}
+  Pagina Principal
+{% endblock %}
+{% block contenido %}
+  <header>
+    <div class="header">
+      <div class="logo">
+        <a href="{{ url_for('principal') }}"><img src="{{ url_for('static', filename='imagenes/logoTFG.png') }}" alt="Logo para-ataxia" class="imglogo" /></a>
+      </div>
+      <div class="sesion">
+          <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='imagenes/todo.png') }}" alt="Ver publicaciones" /></a>
+    </div>
+  </header>
+
+  <div class="content">
+    <br /><br /><br /><br /><br /><br />
+    <div class="container">
+      <div id="accordion1">
+        <div class="card">
+          <div class="card-header" id="cabecera2">
+            <h2 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#respuesta2" aria-expanded="false" aria-controls="respuesta2">¿Qué es la ataxia?</button></h2>
+          </div>
+          <div id="respuesta2" class="collapse" aria-labelledby="cabecera2" data-parent="#accordion1">
+            <div class="card-body">
+              <p>La ataxia es una enfermedad degenerativa del sistema nervioso. Muchos síntomas de la ataxia se asemejan a los de estar borracho, como por ejemplo dificultad para hablar, tropezar, caerse y falta de coordinación. Estos síntomas son causados debido al daño en el cerebelo, la parte del cerebro responsable de coordinar el movimiento, que se observa. El tratamiento de la ataxia incluye una combinación de medicamentos para tratar los síntomas y terapia para mejorar la calidad de vida.</p>
+              <p>Las personas afectadas por ataxia pueden tener problemas para usar los dedos, las manos, los brazos, las piernas, caminar, hablar o mover los ojos. La ataxia afecta a personas de todas las edades. Los síntomas pueden presentarse inicialmente en un rango muy amplio de edades, desde la niñez hasta la adultez tardía. Las complicaciones de la enfermedad son graves y muchas veces debilitantes. Algunos tipos de Ataxia pueden conducir a una muerte prematura.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="cabecera3">
+            <h2 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#respuesta3" aria-expanded="false" aria-controls="respuesta3">Sintomas</button></h2>
+          </div>
+          <div id="respuesta3" class="collapse" aria-labelledby="cabecera3" data-parent="#accordion1">
+            <div class="card-body">
+              <p class="sintomasizq">
+                Los síntomas de la ataxia y la velocidad de progresión de la enfermedad pueden variar de una persona a otra y también según el tipo de ataxia. Los síntomas de la enfermedad pueden empeorar lentamente, durante décadas, o rápidamente, en solo meses. Los síntomas más comunes de la ataxia son:<ul>
+                  <li>Trastornos de la coordinación Hablar arrastrando las palabras Dificultad para comer y deglutir</li>
+                  <li>Deterioro de la motricidad fina</li>
+                  <li>Dificultad para caminar</li>
+                  <li>Anomalías en la forma de caminar</li>
+                  <li>Anomalías en el movimiento de los ojos</li>
+                  <li>Temblores o sacudidas rítmicas</li>
+                  <li>Problemas cardiacos</li>
+                </ul>Las personas con ataxia a menudo requieren la ayuda de una variedad de dispositivos relacionados con la movilidad como: sillas de ruedas, andadores y/o motonetas (scooters).
+              </p>
+              <p class="sintomasdrch">
+                <img src="{{ url_for('static', filename='imagenes/sintomas.jpg') }}" alt="Esquema sintomas para-ataxia" class="sintomasdrch" />
+              </p>
+            </div>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre del tipo de ataxia</th>
+              <th>Descripción del tipo de la ataxia</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for t in tipos %}
+              <tr>
+                <td>{{ t.0 }}</td>
+                <td>{{ t.1 }}</td>
+                <td>{{ t.2 }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+h1 {
+	background-color: #B070F9;
+	text-align: center;
+}
+
+header {
+	height: 100px;
+	width: 100%;
+	/* Establecemos que el header abarque el 100% del documento */
+	overflow: hidden;
+	/* Eliminamos errores de float */
+	background: #252932;
+	position: fixed;
+}
+
+.header {
+	width: 90%;
+	/* Establecemos que el ancho sera del 90% */
+	margin: auto;
+	/* Centramos los elementos */
+	overflow: hidden;
+	/* Eliminamos errores de float */
+}
+
+.saludo{
+	color: #B070F9;
+}
+
+.logo {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.imglogo {
+	width: 60px;
+	height: 60px;
+	float: left;
+	object-fit: contain;
+}
+
+.imgpubli {
+	width: 60px;
+	height: 60px;
+	float: left;
+	object-fit: contain;
+}
+
+.publis {
+	border: 1px solid #B070F9;
+	padding: 10px;
+	margin-bottom: 10px
+}
+
+.sesion {
+	float: right;
+}
+
+.eliminar {
+	border: none;
+	position: relative;
+	height: auto;
+	text-align: end;
+	overflow: hidden;
+}
+
+.mostrar input[type="password"],
+.mostrar input[type="text"] {
+	flex: 1;
+	padding-right: 40px; /* Espacio para el botón de imagen */
+}
+.btnver {
+	background: none;
+	border: none;
+	position: absolute;
+	right: 10px;
+	cursor: pointer;
+	outline: none; /* Para eliminar el borde al hacer clic */
+}
+.btnver img {
+	width: 20px;
+	height: 20px;
+}
+
+@media screen and (max-width: 950px) {
+	header nav {
+		width: 100%;
+		text-align: center;
+		/*Centramos el menu y el logotipo*/
+		line-height: 100px;
+	}
+
+	header {
+		height: auto;
+	}
+
+	.logo {
+		line-height: 50px;
+	}
+}

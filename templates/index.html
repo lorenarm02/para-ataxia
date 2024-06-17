@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block titulo %}
+  Pagina Principal
+{% endblock %}
+{% block contenido %}
+  <header>
+    <div class="header">
+      <div class="logo">
+        <a href="{{ url_for('principal') }}"><img src="{{ url_for('static', filename='imagenes/logoTFG.png') }}" alt="Logo para-ataxia" class="imglogo" /></a>
+      </div>
+      <div class="sesion">
+        {% if usuario != None %}
+        <span class="saludo">Hola, {{ usuario[1] }}</span>
+          <a href="{{ url_for('publicar') }}"><img src="{{ url_for('static', filename='imagenes/publicar.png') }}" alt="Nueva publicación"/></a>
+          <a href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='imagenes/cerrar-sesion.png') }}" alt="Cerrar sesión" /></a>
+        {% else %}
+          <a href="{{ url_for('login') }}"><img src="{{ url_for('static', filename='imagenes/iniciar-sesion.png') }}" alt="Iniciar sesión" /></a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <br /><br /><br /><br /><br /><br />
+
+    <h1 class="is-size-3">Publicaciones</h1>
+    {% if publis %}
+      {% for p in publis %}
+        <div class="publis">
+          <p>
+            <b>Usuario:</b> {{ p[1] }}
+          </p>
+          <p>
+            <b>Tipo de Ataxia:</b> {{ p[2] }}
+          </p>
+          <!-- <img src="{{ p[4] }}" alt="Imagen" style="max-width: 300px;"> -->
+          <p>
+            <b>Descripción:</b> {{ p[3] }}
+          </p>
+          <p>
+            <b>Fecha publicación:</b> {{ p[4] }}
+          </p>
+          <p>Likes: <span id="likes-{{ p[0] }}">{{ p[5] }}</span></p>
+          {% if usuario %}
+          <!-- Boton para dar like-->
+            <button id="like-btn-{{ p[0] }}" onclick="like({{ p[0] }}, {{ p[6] }})">
+              <img src="{{ url_for('static', filename='imagenes/liked.png' if p[6] else 'imagenes/like.png') }}" alt="Me gusta">
+            </button>
+            {% if usuario[3] == 'administrador' %}
+            <div class="eliminar">
+              <!-- Botón para eliminar -->
+              <form action="{{ url_for('eliminar', idPublicacion=p[0]) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta publicación?');">
+                <button type="submit" class="eliminar"><img src="{{ url_for('static', filename='imagenes/papelera.png') }}" alt="Eliminar publicación"/></button>
+            </form>
+          </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No hay publicaciones disponibles.</p>
+    {% endif %}
+  </div>
+{% endblock %}
